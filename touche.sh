@@ -22,16 +22,18 @@ WHITE='\033[1;37m'
 SET='\033[0m'
 
 
+figlet -f big MINION
+printf "${YELLOW}Created by TTEH${SET}"
 
-main_menu ()  { while true; do   
-printf "\n${BLUE}Touches Minion...${GREEN}\n\nMain Menu........\n\n${SET}"
 
+main_menu ()  { while true; do  
+printf "\n${GREEN}\nMain Menu........\n\n${SET}"
 printf "1. Nmap\n"
 printf "2. Gobuster\n"
 printf "3. SMB\n"
 printf "4. ${LIGHTRED}Exit\n${SET}"
 printf "*****************\n"
-read -p "Select your scan:  " choice
+read -p "How can MINION help? :  " choice
 
 case $choice in
     1) Nmap;;
@@ -46,26 +48,26 @@ done
 Nmap() { while true; do
     printf "${GREEN}\n\nNmap menu........\n\n${SET}"
     read -p "Enter IP Address: " IP
-    printf "\n1.${YELLOW} Slow\n${SET}"
+    printf "\n1.${YELLOW} Slow but detailed\n${SET}"
     printf "2.${GREEN} Normal\n${SET}"
-    printf "3.${RED} Fast\n${SET}"
+    printf "3.${RED} Fast but loud (might miss open ports)\n${SET}"
     printf "4. ${CYAN}Back\n${SET}"
     printf "5. ${LIGHTRED}Exit\n${SET}"
     printf "\n"
-    read -p "Select scan speed: " Speed
+    read -p "Please select the speed : " Speed
     
     case $Speed in
         1) printf "\n\nSlow selected"
-           printf "${GREEN}\nRunning 'slow' Nmap scan.....\n${SET}"
+           printf "${GREEN}\nMINION Running 'slow' Nmap scan.....\n${SET}"
            nmap -A -p- -T4 $IP
         
            ;;
         2) printf "\n\nNormal selected"
-           printf "${GREEN}\nRunning 'normal' Nmap scan.....\n${SET}"
+           printf "${GREEN}\nMINION Running 'normal' Nmap scan.....\n${SET}"
            nmap -sV -sC -p- -T4 $IP
            ;;
         3) printf "\n\nFast selected"
-           printf "${GREEN}\nRunning 'fast' Nmap scan.....\n${SET}"
+           printf "${GREEN}\nMINION Running 'fast' Nmap scan.....\n${SET}"
            nmap -sV -sC -p- --min-rate 5000 $IP
            ;;
         4) main_menu;;
@@ -83,7 +85,7 @@ Gobuster()  { while true; do
     read -p "Enter IP Address: " IP
     printf "\n1. Sm"
     printf "\n2. Med"
-    printf "\n1. LG"
+    printf "\n3. LG"
     printf "\n4. ${CYAN}Back${SET}"
     printf "\n5. ${LIGHTRED}Exit${SET}\n"
     printf "\n"
@@ -92,16 +94,16 @@ Gobuster()  { while true; do
     
     case $Size in
         1) printf "\nSm selected"
-           printf "${GREEN}\nUsing'Sm' wordlist .....\n${SET}"
+           printf "${GREEN}\nMINION Using'Sm' wordlist .....\n${SET}"
            gobuster dir --url http://$IP/ --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -x php 
         
            ;;
         2) printf "\n\nMed selected"
-           printf "${GREEN}\nRUsing'Med' wordlist ....\n${SET}"
+           printf "${GREEN}\nMINION Using'Med' wordlist ....\n${SET}"
            gobuster dir --url http://$IP/ --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
            ;;
         3) printf "\n\nFast selected"
-           printf "${GREEN}\nUsing'Lg' wordlist .....\n${SET}"
+           printf "${GREEN}\nMINION Using'Lg' wordlist .....\n${SET}"
            gobuster dir --url http://$IP/ --wordlist /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-20000.txt
            ;;
         4) main_menu;;
@@ -123,25 +125,25 @@ SMB()  { while true; do
     printf "\n4. ${CYAN}Back${SET}"
     printf "\n5. ${LIGHTRED}Exit${SET}"
     printf "\n\n"
-    read -p "What would you like to do: " access
+    read -p "How can MINION help? : " access
     
     
     case $access in
         1) printf "${CYAN}}\n\nList Shares selected${SET}"
-           printf "${GREEN}\n\nAttempting to List Shares now.....\n${SET}"
+           printf "${GREEN}\n\nMINION Attempting to List Shares now.....\n${SET}"
            smbclient -N -L \\\\$IP\\
         
            ;;
         2) printf "${CYAN}\nTest for Uncredentialed Access selected\n${SET}"
            read -p "Share Name : " share
-           printf "${GREEN}\nAttempting to gain access now..........\n${SET}"
+           printf "${GREEN}\nMINION Attempting to gain access now..........\n${SET}"
            printf "${CYAN}Hit 'enter' or input a password when prompted\n"${SET}
            smbclient \\\\$IP\\$share
            ;;
         3) printf "${CYAN}\nAccess with Credentials selected\n${SET}"
            read -p "Share Name : " share
            read -p "Username : " uname
-           printf "${GREEN}\nAttempting to gain access now......\n${SET}"
+           printf "${GREEN}\nMINION Attempting to gain access now......\n${SET}"
            smbclient \\\\$IP\\$share -U $uname
            ;;
         4) main_menu;;
@@ -154,5 +156,7 @@ SMB()  { while true; do
     esac
 done
 }
+
+
 
 main_menu
