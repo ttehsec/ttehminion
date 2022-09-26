@@ -25,13 +25,17 @@ SET='\033[0m'
 figlet -f big MINION
 printf "${YELLOW}Created by TTEH${SET}"
 
+printf "[!] legal disclaimer: Usage of minion for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program."
+
+
 
 main_menu ()  { while true; do  
 printf "\n${GREEN}\nMain Menu........\n\n${SET}"
 printf "1. Nmap\n"
 printf "2. Gobuster\n"
 printf "3. SMB\n"
-printf "4. ${LIGHTRED}Exit\n${SET}"
+printf "4. SQLmap\n"
+printf "5. ${LIGHTRED}Exit\n${SET}"
 printf "*****************\n"
 read -p "How can MINION help? :  " choice
 
@@ -39,7 +43,8 @@ case $choice in
     1) Nmap;;
     2) Gobuster;;
     3) SMB;;
-    4) exit;;
+    4) sqlmap;;
+    5) exit;;
     *) printf "${LIGHTRED}\n\nInvalid selection${SET} : Returning to main menu....... \n\n"
 esac
 done
@@ -49,30 +54,37 @@ Nmap() { while true; do
     printf "${GREEN}\n\nNmap menu........\n\n${SET}"
     read -p "Enter IP Address: " IP
     printf "\n1.${YELLOW} Slow but detailed\n${SET}"
-    printf "2.${GREEN} Normal\n${SET}"
-    printf "3.${RED} Fast but loud (might miss open ports)\n${SET}"
-    printf "4. ${CYAN}Back\n${SET}"
-    printf "5. ${LIGHTRED}Exit\n${SET}"
+    printf "2.${GREEN} Normal with scripts\n${SET}"
+    printf "3.${GREEN} Normal without scripts (this is faster)\n${SET}"
+    printf "4.${RED} Fast but loud (might miss open ports)\n${SET}"
+    printf "5. ${CYAN}Back\n${SET}"
+    printf "6. ${LIGHTRED}Exit\n${SET}"
     printf "\n"
     read -p "Please select the speed : " Speed
     
     case $Speed in
         1) printf "\n\nSlow selected"
            printf "${GREEN}\nMINION Running 'slow' Nmap scan.....\n${SET}"
-           nmap -A -p- -T4 $IP
+           nmap -v -A -p- -T4 $IP
         
            ;;
-        2) printf "\n\nNormal selected"
+        2) printf "\n\nNormal with scripts selected"
            printf "${GREEN}\nMINION Running 'normal' Nmap scan.....\n${SET}"
-           nmap -sV -sC -p- -T4 $IP
+           nmap -n -sV -sC -p- -T4 $IP
            ;;
-        3) printf "\n\nFast selected"
+           
+        3) printf "\n\nNormal without scripts selected"
+           printf "${GREEN}\nMINION Running 'normal (without scripts)' Nmap scan.....\n${SET}"
+           nmap -n -sS -p- --min-rate 1000 $IP
+           ;;
+           
+        4) printf "\n\nFast selected"
            printf "${GREEN}\nMINION Running 'fast' Nmap scan.....\n${SET}"
-           nmap -sV -sC -p- --min-rate 5000 $IP
+           nmap -n -sV -sC -p- --min-rate 5000 $IP
            ;;
-        4) main_menu;;
+        5) main_menu;;
         
-        5) exit;;
+        6) exit;;
         *) printf "${LIGHTRED}\ninvaild selection${SET}: Returing to Nmap Menu.....  \n\n"
     
     
@@ -156,6 +168,48 @@ SMB()  { while true; do
     esac
 done
 }
+
+sqlmap ()  { while true; do  
+    printf "\n${GREEN}\nSQLmap Menu........\n\n${SET}"
+    printf "1. Detect SQL injection flaws\n"
+    printf "2. \n"
+    printf "3. \n"
+    printf "4. ${CYAN}Back\n${SET}"
+    printf "5. ${LIGHTRED}Exit\n${SET}"
+    printf "*****************\n"
+    read -p "How can MINION help? :  " choice
+
+       case $choice in
+        1) printf "${CYAN}\n\nDetect SQL injection flaws selected${SET}\n"
+           read -p "Enter url: " url
+           printf "${GREEN}\n\nMINION process request.....\n${SET}"
+           cd /usr/share/sqlmap
+           ./sqlmap.py -u $url
+        
+           ;;
+        2) printf "${CYAN}\nTest for Uncredentialed Access selected\n${SET}"
+           read -p "Share Name : " share
+           printf "${GREEN}\nMINION Attempting to gain access now..........\n${SET}"
+           printf "${CYAN}Hit 'enter' or input a password when prompted\n"${SET}
+           smbclient \\\\$IP\\$share
+           ;;
+        3) printf "${CYAN}\nAccess with Credentials selected\n${SET}"
+           read -p "Share Name : " share
+           read -p "Username : " uname
+           printf "${GREEN}\nMINION Attempting to gain access now......\n${SET}"
+           smbclient \\\\$IP\\$share -U $uname
+           ;;
+        4) main_menu;;
+        
+        5) exit;;
+        
+        *) printf "${LIGHTRED}\nInvaild selection${SET}: Returning to SMB menu.... \n\n"
+
+
+    esac
+done
+}
+
 
 
 
