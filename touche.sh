@@ -1,5 +1,9 @@
 #!/bin/bash
-#Thanks you for using Minion. This is an open-source project for Ethical Hacker looking to automate some of the most known tool. Feel free to edit this project as you see fit.
+#Thanks you for using Touches Helper. This is an open-source project for Ethical Hacker looking to automate some of the most known tool. Feel free to edit this project as you see fit.
+
+#Adding to the main menu: see examples below. First without text color, second with text color.
+	#printf "3. SMB\n" 
+	#printf "4. ${LIGHTRED}Exit\n${SET}"
 
 
 
@@ -21,7 +25,7 @@ SET='\033[0m'
 figlet -f big MINION
 printf "${YELLOW}Created by TTEH${SET}"
 
-printf "[!] legal disclaimer: Usage of Minion for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program."
+printf "[!] legal disclaimer: Usage of minion for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program."
 
 
 
@@ -31,7 +35,8 @@ printf "1. Nmap\n"
 printf "2. Gobuster\n"
 printf "3. SMB\n"
 printf "4. SQLmap\n"
-printf "5. ${LIGHTRED}Exit\n${SET}"
+printf "5. Search Exploit-db\n"
+printf "6. ${LIGHTRED}Exit\n${SET}"
 printf "*****************\n"
 read -p "How can MINION help? :  " choice
 
@@ -40,7 +45,8 @@ case $choice in
     2) Gobuster;;
     3) SMB;;
     4) sqlmap;;
-    5) exit;;
+    5) exploit-db;;
+    6) exit;;
     *) printf "${LIGHTRED}\n\nInvalid selection${SET} : Returning to main menu....... \n\n"
 esac
 done
@@ -206,14 +212,39 @@ sqlmap ()  { while true; do
         
         5) exit;;
         
-        *) printf "${LIGHTRED}\nInvaild selection${SET}: Returning to SMB menu.... \n\n"
+        *) printf "${LIGHTRED}\nInvaild selection${SET}: Returning to sqlmap menu.... \n\n"
 
 
     esac
 done
 }
 
-
-
+exploit-db() { while true; do
+    printf "\n${GREEN}\nSearch Expolit-db Menu.....\n\n${SET}"
+    printf "1. Search\n"
+    printf "2. ${CYAN}Back\n${SET}"
+    printf "3. ${RED}Exit\n${SET}"
+    read -p "How can MINION help? :  " choice
+    
+        case $choice in
+        1) read -p "What would you like to search for?: " search
+           printf "\n MINION searching for $search in exploit-db.....\n"
+           searchsploit $search
+        
+           ;;
+           
+         
+        2) main_menu;;
+           
+ 
+        3) exit;;
+        
+        *) printf "${LIGHTRED}\nInvaild selection${SET}: Returning to Exploit-db menu.... \n\n"
+             
+           
+        esac
+        
+done
+}
 
 main_menu
