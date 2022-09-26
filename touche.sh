@@ -1,5 +1,5 @@
 #!/bin/bash
-#Thanks you for using Touches Helper. This is an open-source project for Ethical Hacker looking to automate some of the most known tool. Feel free to edit this project as you see fit.
+#Thanks you for using Minion. This is an open-source project for Ethical Hacker looking to automate some of the most known tool. Feel free to edit this project as you see fit.
 
 
 
@@ -21,7 +21,7 @@ SET='\033[0m'
 figlet -f big MINION
 printf "${YELLOW}Created by TTEH${SET}"
 
-printf "[!] legal disclaimer: Usage of minion for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program."
+printf "[!] legal disclaimer: Usage of Minion for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program."
 
 
 
