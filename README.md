@@ -14,4 +14,13 @@ Tools used in Minion:
 
 or 
 
-2. 
+2. git clone https://github.com/ttehsec/ttehminion.git
+
+## Usage 
+1. ./minion - this will launch minion 
+
+## Dependencies
+
+1. sqlmap - sudo apt install sqlmap
+2. SMBClient - sudo apt -y install smbclient
+3. Gobuster - sudo apt install gobuster
