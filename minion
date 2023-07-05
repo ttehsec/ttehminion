@@ -1,5 +1,8 @@
 #!/bin/bash
-#Thanks you for using Touches Helper. This is an open-source project for Ethical Hacker looking to automate some of the most known tool. Feel free to edit this project as you see fit.
+#Thanks you for using Touches Helper. This is an open-source project for Ethical Hacker looking to automate some of the most known tool. Feel free to edit this project as you see fit. 
+#upcoming revision 1 - 1. nmap output to file, 2. Add Nikto scanner.
+#upcoming revision 2 - 1. main menu - changed to web application pen-test, Network pen-test options
+
 
 
 
