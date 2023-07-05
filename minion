@@ -1,8 +1,7 @@
 #!/bin/bash
 #Thanks you for using Touches Helper. This is an open-source project for Ethical Hacker looking to automate some of the most known tool. Feel free to edit this project as you see fit. 
-#upcoming revision 1. - 1. nmap output to file.
-#upcoming revision 2. - Add Nikto scanner.
-#upcoming revision 3. - 1. main menu - changed to web application pen-test, Network pen-test options.
+#upcoming revision 1 - 1. nmap output to file, 2. Add Nikto scanner.
+#upcoming revision 2 - 1. main menu - changed to web application pen-test, Network pen-test options
 
 
 
@@ -56,13 +55,9 @@ Nmap() { while true; do
     printf "${GREEN}\n\nNmap menu........\n\n${SET}"
     read -p "Enter IP Address: " IP
     printf "\n1.${YELLOW} Slow but detailed\n${SET}"
-    #printf "a.${WHITE} Slow output to file\n${SET}"
     printf "2.${GREEN} Normal with scripts\n${SET}"
-    #printf "b.${WHITE} Normal output to file\n${SET}"
     printf "3.${GREEN} Normal without scripts (this is faster)\n${SET}"
-    #printf "c.${WHITE} Normal without scripts output to file\n${SET}"
     printf "4.${RED} Fast but loud (might miss open ports)\n${SET}"
-    #printf "d.${WHITE} Fast but loud output to file\n${SET}"
     printf "5. ${CYAN}Back\n${SET}"
     printf "6. ${LIGHTRED}Exit\n${SET}"
     printf "\n"
@@ -71,49 +66,23 @@ Nmap() { while true; do
     case $Speed in
         1) printf "\n\nSlow selected"
            printf "${GREEN}\nMINION Running 'slow' Nmap scan.....\n${SET}"
-           nmap -v -A -p- -T4 $IP 
+           nmap -v -A -p- -T4 $IP
+        
            ;;
-<<comment
-        a) printf "\n\nSlow selected"
-           printf "${GREEN}\nMINION Running 'slow' Nmap scan.....\n${SET}"
-           printf "Outputting Nmap results to file"
-           nmap -v -A -p- -T4 $IP -oN $IP_slow 
-           ;;
-comment
         2) printf "\n\nNormal with scripts selected"
            printf "${GREEN}\nMINION Running 'normal' Nmap scan.....\n${SET}"
            nmap -n -sV -sC -p- -T4 $IP
            ;;
-<<comment
-        b) printf "\n\nNormal with scripts selected"
-           printf "Outputting Nmap results to file"
-           printf "${GREEN}\nMINION Running 'normal' Nmap scan.....\n${SET}"
-           nmap -n -sV -sC -p- -T4 $IP -oN $IP_normal
-           ;;
-comment
            
         3) printf "\n\nNormal without scripts selected"
            printf "${GREEN}\nMINION Running 'normal (without scripts)' Nmap scan.....\n${SET}"
            nmap -n -sS -p- --min-rate 1000 $IP
            ;;
-<<comment
-        c) printf "\n\nNormal without scripts selected"
-           printf "Outputting Nmap results to file"
-           printf "${GREEN}\nMINION Running 'normal (without scripts)' Nmap scan.....\n${SET}"
-           nmap -n -sS -p- --min-rate 1000 $IP -oN $IP_normal 
-           ;;
-comment
+           
         4) printf "\n\nFast selected"
            printf "${GREEN}\nMINION Running 'fast' Nmap scan.....\n${SET}"
            nmap -n -sV -sC -p- --min-rate 5000 $IP
            ;;
-<<comment
-        d) printf "\n\nFast"
-           printf "Outputting Nmap results to file"
-           printf "${GREEN}\nMINION Running 'fast' Nmap scan.....\n${SET}"
-           nmap -n -sV -sC -p- --min-rate 5000 $IP -oN $IP_normal
-           ;;
-comment
         5) main_menu;;
         
         6) exit;;
@@ -278,4 +247,3 @@ done
 }
 
 main_menu
-
