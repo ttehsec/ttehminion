@@ -113,49 +113,6 @@ Nmap() { while true; do
     done
 }
 
-
-///Nmap() { while true; do
-    printf "${GREEN}\n\nNmap menu........\n\n${SET}"
-    read -p "Enter IP Address: " IP
-    printf "\n1.${YELLOW} Slow but detailed\n${SET}"
-    printf "2.${GREEN} Normal with scripts\n${SET}"
-    printf "3.${GREEN} Normal without scripts (this is faster)\n${SET}"
-    printf "4.${RED} Fast but loud (might miss open ports)\n${SET}"
-    printf "5. ${CYAN}Back\n${SET}"
-    printf "6. ${LIGHTRED}Exit\n${SET}"
-    printf "\n"
-    read -p "Please select the speed : " Speed
-    
-    case $Speed in
-        1) printf "\n\nSlow selected"
-           printf "${GREEN}\nMINION Running 'slow' Nmap scan.....\n${SET}"
-           nmap -v -A -p- -T4 $IP
-        
-           ;;
-        2) printf "\n\nNormal with scripts selected"
-           printf "${GREEN}\nMINION Running 'normal' Nmap scan.....\n${SET}"
-           nmap -n -sV -sC -p- -T4 $IP
-           ;;
-           
-        3) printf "\n\nNormal without scripts selected"
-           printf "${GREEN}\nMINION Running 'normal (without scripts)' Nmap scan.....\n${SET}"
-           nmap -n -sS -p- --min-rate 1000 $IP
-           ;;
-           
-        4) printf "\n\nFast selected"
-           printf "${GREEN}\nMINION Running 'fast' Nmap scan.....\n${SET}"
-           nmap -n -sV -sC -p- --min-rate 5000 $IP
-           ;;
-        5) main_menu;;
-        
-        6) exit;;
-        *) printf "${LIGHTRED}\ninvaild selection${SET}: Returing to Nmap Menu.....  \n\n"
-    
-    
-    esac
-    done
-}///
-
 Gobuster()  { while true; do
     printf "${GREEN}\n\nGobuster menu....\n\n${SET}"
     read -p "Enter IP Address: " IP
