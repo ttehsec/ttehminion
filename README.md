@@ -10,11 +10,15 @@ Tools used in Minion:
 * Searchsploit
 
 ## Installation
-1. Copy the raw code and paste into a .sh file. 
+1. Copy the raw code and paste into a .sh file.
+2. chomd +x file 
 
 or 
 
-2. git clone https://github.com/ttehsec/ttehminion.git
+1. git clone https://github.com/ttehsec/ttehminion.git
+2. cd ttehminion
+3. chmod +x ./minion
+4. ./minion
 
 ## Usage 
 1. ./minion - this will launch minion 
