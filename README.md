@@ -35,4 +35,3 @@ or
 
 ## Note
 1. After each task, Minion will default back task menu and it will ask you to enter a IP address. Pressing enter will allow you to bypass the task menu, select another task, or exit.
-2. 
