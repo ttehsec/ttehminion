@@ -26,7 +26,7 @@ or
 1. ./minion - this will launch minion 
 
 ## Nmap Reports
-1. Nmap output files are named "IP address.(speed selections)".
+1. Nmap output files are named "IP address.speed selections".
 
 ## Dependencies
 1. SQLmap - sudo apt install sqlmap
