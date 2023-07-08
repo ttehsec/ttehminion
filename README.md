@@ -23,7 +23,11 @@ or
 4. ./minion
 
 ## Usage 
-1. ./minion - this will launch minion 
+1. ./minion - this will launch minion
+
+https://github.com/ttehsec/ttehminion/assets/113875290/f5906c07-1890-4ce6-985f-89c0369c26b7
+
+
 
 ## Nmap Reports
 1. Nmap output files are named "IP address.speed selections".
