@@ -25,7 +25,7 @@ or
 ## Usage 
 1. ./minion - this will launch minion
 
-https://github.com/ttehsec/ttehminion/assets/113875290/f5906c07-1890-4ce6-985f-89c0369c26b7
+https://github.com/ttehsec/ttehminion/assets/113875290/350b86e1-e89f-41cf-ae8c-884bbdf7ef0e
 
 
 
